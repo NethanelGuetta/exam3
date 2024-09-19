@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="script.js"></script>
+  </head>
+  <body>
+    <div class="navBar">
+      <h2>NBA FANTASY 2024</h2>
+    </div>
+    <div class="title">
+      <h3> My Fantasy Team</h3>
+    </div>
+    <div id="teamContainer">
+      <div id="PG" class="player">
+        <p class="header">
+          <span >Point Guard</span>
+        </p>
+        <div id="pgInfo"></div>
+      </div>
+      <div id="SG" class="player">
+        <p class="header">
+          <span>Shooting Guard</span>
+        </p>
+        <div id="sgInfo"></div>
+      </div>
+      <div id="SF" class="player">
+        <p class="header">
+          <span>Small Forward</span>
+        </p>
+        <div id="sfInfo"></div>
+      </div>
+      <div id="PF" class="player">
+        <p class="header">
+          <span>power forward</span>
+        </p>
+        <div id="pfInfo"></div>
+      </div>
+      <div id="C" class="player">
+        <p class="header">
+          <span>center</span>
+        </p>
+        <div id="cInfo"></div>
+      </div>
+    </div>
+    <button class="button" id="addTeam">Add Team</button>
+    <div id="input">
+      <form action="">
+        <select name="position" id="position">
+          <option value="PG">PG</option>
+          <option value="SG">SG</option>
+          <option value="SF">SF</option>
+          <option value="PF">PF</option>
+          <option value="C">C</option>
+        </select>
+      </form>
+      <div class="rangeContainer">
+        <input type="range" min="0" max="100" id="twoPercentRange" />
+        <p>Value: <span id="twoValue"></span></p>
+        <input type="range" min="0" max="100" id="threePercentRange" />
+        <p>Value: <span id="threeValue"></span></p>
+        <input type="range" min="0" max="20000" id="pointRange" />
+        <p>Value: <span id="pointValue"></span></p>
+      </div>
+      <button class="button" id="searchPlayer">Search Player</button>
+    </div>
+    <table id="tableDiv">
+      <tr>
+        <!-- <th class="tableHead" ><button id="filterBtn">Full Name</button></th> -->
+        <th class="tableHead">Player</th>
+        <th class="tableHead">Position</th>
+        <th class="tableHead">Points</th>
+        <th class="tableHead">FG%</th>
+        <th class="tableHead">3P%</th>
+        <th class="tableHead">Action</th>
+      </tr>
+      <tbody id="tBody"></tbody>
+    </table>
+  </body>
+</html>
