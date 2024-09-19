@@ -14,7 +14,7 @@ function saveToLocalStorage() {
 function getFromLocalStorage(): Player[] {
     const arr = JSON.parse(localStorage.getItem("teamPlayers") || '""');
     if (!arr) {
-        saveToLocalStorage();
+        // saveToLocalStorage();
         return [];
     }
     return arr;
@@ -44,7 +44,6 @@ const cInfo = document.getElementById("cInfo") as HTMLDivElement;
 //input elements
 let positionInput = document.getElementById("position") as HTMLSelectElement;
 let searchBtn = document.getElementById("searchPlayer") as HTMLButtonElement;
-let addTeamBtn = document.getElementById("addTeam") as HTMLButtonElement;
 let twoInput = document.getElementById("twoPercentRange") as HTMLInputElement;
 let twoOutput = document.getElementById("twoValue") as HTMLSpanElement;
 twoOutput.textContent = twoInput.value;
@@ -209,40 +208,3 @@ function renderTeamPlayers(players: Player[]) {
         }
     });
 }
-document.addEventListener("DOMContentLoaded", () => {
-    let playerArry = getFromLocalStorage();
-    renderTeamPlayers(playerArry);    
-})
-//bonus
-interface Teams{
-    players:Player[];
-}
-async function addAteamToApi() {
-    let team = localStorage.getItem("teamPlayers");
-    // const newTeam:Teams = {
-    //     players: team
-    // }
-    const newTeam = {
-        players: team
-    }
-    console.log(team);
-    try {
-        const response = await fetch("https://nbaserver-q21u.onrender.com/api/AddTeam", {
-            method: "POST",
-            body: JSON.stringify(newTeam),
-            headers: { 'Content-Type': 'application/json' }
-        });
-        if (!response.ok) {
-            throw new Error("network error" + response);
-        }
-        const data = await response.json();
-        console.log(data);
-        console.log(response);
-        renderTable(data);
-    } catch (error) {
-        console.log(error)
-    }
-}
-
-addTeamBtn.addEventListener("click",  () => addAteamToApi() 
-);

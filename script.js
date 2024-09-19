@@ -43,7 +43,7 @@ function saveToLocalStorage() {
 function getFromLocalStorage() {
     var arr = JSON.parse(localStorage.getItem("teamPlayers") || '""');
     if (!arr) {
-        saveToLocalStorage();
+        // saveToLocalStorage();
         return [];
     }
     return arr;
@@ -68,7 +68,6 @@ var cInfo = document.getElementById("cInfo");
 //input elements
 var positionInput = document.getElementById("position");
 var searchBtn = document.getElementById("searchPlayer");
-var addTeamBtn = document.getElementById("addTeam");
 var twoInput = document.getElementById("twoPercentRange");
 var twoOutput = document.getElementById("twoValue");
 twoOutput.textContent = twoInput.value;
@@ -246,48 +245,3 @@ function renderTeamPlayers(players) {
         }
     });
 }
-document.addEventListener("DOMContentLoaded", function () {
-    var playerArry = getFromLocalStorage();
-    renderTeamPlayers(playerArry);
-});
-function addAteamToApi() {
-    return __awaiter(this, void 0, void 0, function () {
-        var team, newTeam, response, data, error_2;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    team = localStorage.getItem("teamPlayers");
-                    newTeam = {
-                        players: team
-                    };
-                    console.log(team);
-                    _a.label = 1;
-                case 1:
-                    _a.trys.push([1, 4, , 5]);
-                    return [4 /*yield*/, fetch("https://nbaserver-q21u.onrender.com/api/AddTeam", {
-                            method: "POST",
-                            body: JSON.stringify(newTeam),
-                            headers: { 'Content-Type': 'application/json' }
-                        })];
-                case 2:
-                    response = _a.sent();
-                    if (!response.ok) {
-                        throw new Error("network error" + response);
-                    }
-                    return [4 /*yield*/, response.json()];
-                case 3:
-                    data = _a.sent();
-                    console.log(data);
-                    console.log(response);
-                    renderTable(data);
-                    return [3 /*break*/, 5];
-                case 4:
-                    error_2 = _a.sent();
-                    console.log(error_2);
-                    return [3 /*break*/, 5];
-                case 5: return [2 /*return*/];
-            }
-        });
-    });
-}
-addTeamBtn.addEventListener("click", function () { return addAteamToApi(); });
